@@ -1,0 +1,60 @@
+gcloud beta container \
+    --project \
+"project-d6f27680-112f-48b0-8a8" clusters create "day5" \
+    --region \
+"northamerica-northeast1" \
+    --enable-default-compute-class \
+    --default-compute-class="autopilot" \
+    --autopilot-cluster-policies=no-system-mutation,no-system-impersonation,no-unsafe-webhooks \
+    --no-enable-basic-auth \
+    --cluster-version \
+"1.37.1-gke.1552000" \
+    --release-channel \
+"regular" \
+    --machine-type \
+"e2-medium" \
+    --image-type \
+"COS_CONTAINERD" \
+    --disk-type \
+"pd-standard" \
+    --disk-size \
+"30" \
+    --metadata \
+disable-legacy-endpoints=true \
+    --service-account \
+"default" \
+    --scopes \
+"https://www.googleapis.com/auth/devstorage.read_only","https://www.googleapis.com/auth/logging.write","https://www.googleapis.com/auth/monitoring","https://www.googleapis.com/auth/service.management.readonly","https://www.googleapis.com/auth/servicecontrol","https://www.googleapis.com/auth/trace.append" \
+    --max-pods-per-node \
+"110" \
+    --num-nodes \
+"1" \
+    --logging=SYSTEM,WORKLOAD \
+    --monitoring=SYSTEM,STORAGE,HPA,POD,DAEMONSET,DEPLOYMENT,STATEFULSET,CADVISOR,KUBELET,DCGM,JOBSET \
+    --enable-ip-alias \
+    --network \
+"projects/project-d6f27680-112f-48b0-8a8/global/networks/default" \
+    --subnetwork \
+"projects/project-d6f27680-112f-48b0-8a8/regions/northamerica-northeast1/subnetworks/default" \
+    --no-enable-intra-node-visibility \
+    --default-max-pods-per-node \
+"110" \
+    --enable-ip-access \
+    --security-posture=standard \
+    --workload-vulnerability-scanning=disabled \
+    --no-enable-google-cloud-access \
+    --addons \
+HorizontalPodAutoscaling,HttpLoadBalancing,NodeLocalDNS,GcePersistentDiskCsiDriver,GcpFilestoreCsiDriver \
+    --enable-autoupgrade \
+    --enable-autorepair \
+    --max-surge-upgrade \
+1 \
+    --max-unavailable-upgrade \
+0 \
+    --binauthz-evaluation-mode=DISABLED \
+    --enable-managed-prometheus \
+    --enable-shielded-nodes \
+    --shielded-integrity-monitoring \
+    --no-shielded-secure-boot \
+    --node-locations \
+"northamerica-northeast1-a","northamerica-northeast1-c","northamerica-northeast1-b"
